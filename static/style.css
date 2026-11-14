@@ -1,0 +1,282 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #f2f2f2;
+}
+
+.dashboard {
+    min-height: 100vh;
+    width: 100%;
+    padding: 34px 2.7% 60px;
+    background: linear-gradient(
+        115deg,
+        #242c80,
+        #32266b,
+        #703e7c
+    );
+}
+
+/* Header */
+
+.header {
+    min-height: 155px;
+    background: #202c3e;
+    display: flex;
+    align-items: center;
+    padding: 12px;
+}
+
+.logo {
+    width: 135px;
+    height: 135px;
+    object-fit: contain;
+    background: white;
+}
+
+h1 {
+    color: white;
+    font-size: clamp(25px, 2.65vw, 39px);
+    text-align: center;
+    flex: 1;
+    margin: 0 135px 0 0;
+}
+
+/* Search and Entry Panels */
+
+.search-panel,
+.entry-panel {
+    background: rgba(176, 147, 193, 0.29);
+    border-radius: 8px;
+    padding: 17px 12px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.09);
+}
+
+.search-panel {
+    margin-bottom: 26px;
+}
+
+.search-form,
+.entry-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+/* Input Fields */
+
+input,
+select {
+    height: 37px;
+    background: white;
+    border: 1px solid #d6d6d6;
+    border-radius: 5px;
+    padding: 0 10px;
+    color: #343434;
+    font: 13px Arial, sans-serif;
+}
+
+.search-form input {
+    width: 160px;
+}
+
+.entry-form input {
+    width: 160px;
+}
+
+.entry-form select {
+    width: 95px;
+}
+
+/* Buttons */
+
+button {
+    height: 37px;
+    border: none;
+    border-radius: 5px;
+    padding: 0 24px;
+    background: #fb2449;
+    color: white;
+    font: 13px Arial, sans-serif;
+    cursor: pointer;
+    box-shadow: 0 2px 8px #d3204c60;
+}
+
+button:hover {
+    background: #e41439;
+}
+
+.clear-link {
+    color: white;
+}
+
+/* Statistics */
+
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin: 28px auto 34px;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    width: 136px;
+    min-height: 111px;
+    border-radius: 8px;
+    background: rgba(183, 159, 201, 0.29);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 17px;
+    box-shadow: 0 4px 11px #1b123c40;
+}
+
+.stat-card strong {
+    font-size: 17px;
+}
+
+.stat-card span {
+    font: 13px Arial, sans-serif;
+}
+
+/* Progress Bar */
+
+.progress-track {
+    width: 82%;
+    height: 24px;
+    border-radius: 30px;
+    overflow: hidden;
+    margin: 0 auto 36px;
+    background: rgba(195, 177, 207, 0.45);
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        #06c9ed,
+        #0878ed
+    );
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    font: bold 13px Arial, sans-serif;
+    border-radius: 30px;
+}
+
+/* Student Details */
+
+h2 {
+    color: white;
+    text-align: center;
+    font-size: 34px;
+    margin: 0 0 26px;
+}
+
+.table-wrap {
+    overflow-x: auto;
+    background: rgba(192, 160, 201, 0.38);
+    border-radius: 6px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+th {
+    background: #283d4b;
+    color: white;
+    padding: 13px 8px;
+    font: bold 14px Arial, sans-serif;
+}
+
+td {
+    padding: 12px 8px;
+    font: 14px Arial, sans-serif;
+    color: #1b1922;
+}
+
+tr:hover td {
+    background: rgba(255,255,255,0.09);
+}
+
+td.not-placed {
+    color: #fa345b;
+    font-weight: bold;
+}
+
+td.placed {
+    color: #17241d;
+}
+
+/* Notifications */
+
+.notice {
+    text-align: center;
+    color: white;
+    padding: 12px;
+}
+
+/* Responsive Design */
+
+@media (max-width: 720px) {
+
+    .dashboard {
+        padding: 14px 12px 35px;
+    }
+
+    .header {
+        min-height: 100px;
+    }
+
+    .logo {
+        width: 75px;
+        height: 75px;
+    }
+
+    h1 {
+        margin-right: 0;
+        font-size: 21px;
+    }
+
+    .entry-form {
+        gap: 9px;
+    }
+
+    .entry-form input {
+        width: calc(50% - 8px);
+    }
+
+    .stats {
+        gap: 9px;
+    }
+
+    .stat-card {
+        width: calc(50% - 9px);
+        min-height: 85px;
+    }
+
+    .progress-track {
+        width: 96%;
+    }
+
+    h2 {
+        font-size: 26px;
+    }
+
+    table {
+        min-width: 600px;
+    }
+}

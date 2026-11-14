@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Placement Tracker Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- Header Section -->
+
+    <header class="header">
+
+        <img src="{{ url_for('static', filename='aditya_logo.png') }}"
+             class="logo"
+             alt="Aditya Logo">
+
+        <h1>Placement Tracker Dashboard</h1>
+
+    </header>
+
+
+    <!-- Search Section -->
+
+    <section class="search-panel">
+
+        <form action="/" method="GET" class="search-form">
+
+            <input type="text"
+                   name="search"
+                   placeholder="Enter Student Name"
+                   value="{{ search }}">
+
+            <button type="submit">Search</button>
+
+            {% if search %}
+                <a href="/" class="clear-link">Clear</a>
+            {% endif %}
+
+        </form>
+
+    </section>
+
+
+    <!-- Add Student Section -->
+
+    <section class="entry-panel">
+
+        <form action="/add"
+              method="POST"
+              class="entry-form">
+
+            <input type="text"
+                   name="name"
+                   placeholder="Name"
+                   required>
+
+            <input type="text"
+                   name="department"
+                   placeholder="Department"
+                   required>
+
+            <input type="text"
+                   name="company"
+                   placeholder="Company">
+
+            <input type="number"
+                   name="package"
+                   placeholder="Package"
+                   min="0"
+                   step="0.1">
+
+            <select name="status">
+
+                <option value="Placed">Placed</option>
+
+                <option value="Not Placed">Not Placed</option>
+
+            </select>
+
+            <button type="submit">Enter</button>
+
+        </form>
+
+    </section>
+
+
+    <!-- Notifications -->
+
+    {% with messages = get_flashed_messages() %}
+        {% for message in messages %}
+
+            <div class="notice">
+                {{ message }}
+            </div>
+
+        {% endfor %}
+    {% endwith %}
+
+
+    <!-- Statistics Cards -->
+
+    <section class="stats">
+
+        <div class="stat-card">
+            <strong>{{ total }}</strong>
+            <span>Total</span>
+        </div>
+
+        <div class="stat-card">
+            <strong>{{ placed }}</strong>
+            <span>Placed</span>
+        </div>
+
+        <div class="stat-card">
+            <strong>{{ not_placed }}</strong>
+            <span>Not Placed</span>
+        </div>
+
+        <div class="stat-card">
+            <strong>{{ "%.2f"|format(percentage) }}%</strong>
+            <span>Percent</span>
+        </div>
+
+    </section>
+
+
+<!-- Progress Bar -->
+
+<div class="progress-track">
+
+    <div class="progress-fill"
+         style="width: {{ percentage }}%;">
+
+        {{ "%.2f"|format(percentage) }}%
+
+    </div>
+
+</div>
+
+
+    <!-- Student Details -->
+
+    <h2>Student Details</h2>
+
+    <div class="table-wrap">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Company</th>
+                    <th>Package</th>
+                    <th>Status</th>
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for student in students %}
+
+                <tr>
+
+                    <td>{{ student.Name }}</td>
+
+                    <td>{{ student.Department }}</td>
+
+                    <td>{{ student.Company }}</td>
+
+                    <td>{{ student.Package }}</td>
+
+                    <td class="{{ 'placed' if student.Status|lower == 'placed' else 'not-placed' }}">
+
+                        {{ student.Status }}
+
+                    </td>
+
+                </tr>
+
+                {% else %}
+
+                <tr>
+                    <td colspan="5">No students found.</td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+</html>
